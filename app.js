@@ -10,34 +10,31 @@ d3.json("samples.json").then(function(data) {
 
     function bar(data){
         var chart_data = {
-            x:data.otu_ids,
-            y:data.sample_values,
+            x:data.samples[0].otu_ids.slice(0,10),
+            y:data.samples[0].sample_values.slice(0,10),
             type:'bar'
         }
 
-        Plotly.newPlot('bar', chart_data);
+        Plotly.newPlot('bar', [chart_data]);
     }
 
     bar(data)
-});
-
-d3.json("samples.json").then(function(data) {
-
 
     function bubble(data){
         var bubble_data = {
-            x:data.otu_ids,
-            y:data.sample_values,
-            markersize: sample_values,
-            markerColors:otu_ids,
-            text:otu_labels,
+            x:data.samples[0].otu_ids.slice(0,10),
+            y:data.samples[0].sample_values.slice(0,10),
+            markerSize: data.samples.sample_values,
+            markerColors:data.samples.otu_ids,
+            text:data.samples.otu_labels,
             type:'bubble'
         }
 
-        Plotly.newPlot('bubble', bubble_data);
+        Plotly.newPlot('bubble', [bubble_data]);
     }
 
     bubble(data)
+
 });
 
 // //changing dropdown menu items
